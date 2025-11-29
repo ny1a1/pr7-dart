@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomeScreen(),
         '/details': (context) => DetailsScreen(),
         '/final': (context) => FinalScreen(),
+        '/settings': (context) => SettingsScreen(),
       },
     );
   }
@@ -31,7 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('HomeScreen')),
+      appBar: AppBar(
+        title: Text('HomeScreen'),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.blue,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -81,7 +94,19 @@ class _DetailsScreenState extends State<DetailsScreen> {
     final String? receivedText = ModalRoute.of(context)?.settings.arguments as String?;
 
     return Scaffold(
-      appBar: AppBar(title: Text('DetailsScreen')),
+      appBar: AppBar(
+        title: Text('DetailsScreen'),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.green,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -128,10 +153,42 @@ class FinalScreen extends StatelessWidget {
     final String? combinedText = ModalRoute.of(context)?.settings.arguments as String?;
 
     return Scaffold(
-      appBar: AppBar(title: Text('FinalScreen')),
+      appBar: AppBar(
+        title: Text('FinalScreen'),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.red,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: Text(
           combinedText ?? 'Немає тексту',
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
+    );
+  }
+}
+
+// ----- SettingsScreen -----
+class SettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.purple,
+      ),
+      body: Center(
+        child: Text(
+          'Тут будуть налаштування',
           style: TextStyle(fontSize: 20),
         ),
       ),
